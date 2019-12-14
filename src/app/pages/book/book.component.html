@@ -1,0 +1,501 @@
+<div class="m-5 border-c">
+  <mat-horizontal-stepper linear="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>
+          eBook Details
+        </ng-template>
+        <!-- for-language -->
+        <div class="row mr-0 pt-3 bg-light">
+          <div class="col-md-3">
+            <h4 class="pt-3 px-5 lg-1 lg-1">Language</h4>
+          </div>
+          <div class="col-md-9">
+            <div class="dis1 p-3">
+              <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page before the actual words are put into the finished product.
+                Lorem ipsum resembles Latin but has no real meaning
+              </p>
+            </div>
+            <div class="dis2 search-div px-3">
+              <mat-form-field class="search-form-field" floatLabel="never">
+                  <mat-label>English</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let language of languages" [value]="language.value">
+                    {{language.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+       <!-- for eBook Name -->
+        <div class="row mr-0 mt-3 pt-3 bg-light">
+          <div class="col-md-3">
+            <h4 class="pt-3 px-5 lg-1 lg-1">eBook Title</h4>
+          </div>
+          <div class="col-md-9">
+            <div class="dis1 p-3">
+              <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page
+              </p>
+            </div>
+            <div class="dis2 search-div example-container px-3">
+              <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                <input matInput placeholder="Title" formControlName="firstCtrl" required>
+              </mat-form-field>
+              <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                <input matInput placeholder="Subtitle">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <!-- for-series -->
+        <div class="row  mr-0 mt-3 pt-3 bg-light">
+          <div class="col-md-3">
+            <h4 class="pt-3 px-5 lg-1 lg-1">Series</h4>
+          </div>
+          <div class="col-md-9">
+            <div class="dis1 p-3">
+              <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page before the actual words are put into the finished product.
+                Lorem ipsum resembles Latin but has no real meaning
+              </p>
+            </div>
+            <div class="col-md-12">
+              <h5 class="px-2 tex text-black-50">Series Information</h5>
+            </div>
+            <div class="dis2 search-div px-3">
+              <mat-form-field class="search-form-field" floatLabel="never">
+                <mat-select>
+                  <mat-option *ngFor="let series of series" [value]="series.value">
+                    {{series.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <!-- Author & Publisher -->
+        <div class="row mr-0 mt-3 pt-3 bg-light">
+          <div class="col-md-3">
+            <h4 class="pt-3 px-5 lg-1 lg-1">Athor & Publisher</h4>
+          </div>
+          <div class="col-md-9">
+            <div class="dis1 p-3">
+              <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page
+              </p>
+            </div>
+            <div class="dis2 example-container px-3">
+              <div class="row">
+                <div class="col-md-6">
+                    <div class="dis2 search-div ">
+                        <mat-form-field class="search-form-field" floatLabel="never">
+                            <mat-label>Select Author</mat-label>
+                          <mat-select>
+                            <mat-option *ngFor="let series of series" [value]="series.value">
+                              {{series.viewValue}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="dis2 search-div ">
+                        <mat-form-field class="search-form-field" floatLabel="never">
+                            <mat-label>Select Publisher</mat-label>
+                          <mat-select>
+                            <mat-option *ngFor="let series of series" [value]="series.value">
+                              {{series.viewValue}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                </div>
+              </div>
+             
+              
+            </div>
+          </div>
+        </div>
+        <!-- for-description -->
+        <div class="row mr-0 mt-3 pt-3 bg-light">
+          <div class="col-md-3">
+            <h4 class="pt-3 px-5 lg-1 lg-1">Description</h4>
+          </div>
+          <div class="col-md-9">
+            <div class="dis1 p-3">
+              <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page
+              </p>
+            </div>
+            <div class="dis2 search-div example-container px-3">
+              <mat-form-field row='3'class="search-form-field" floatLabel="never">
+                <textarea matInput rows="5" cols="40" placeholder="Textarea" maxlength="400"></textarea>
+              </mat-form-field>
+              <mat-hint class="text-lg-right">Maximum 400 charactor's</mat-hint>
+            </div>
+          </div>
+        </div>
+        <!-- for-keywords -->
+        <div class="row mr-0 mt-3 pt-3 bg-light">
+          <div class="col-md-3">
+            <h4 class="pt-3 px-5 lg-1 lg-1">Keywords</h4>
+          </div>
+          <div class="col-md-9">
+            <div class="dis1 p-3">
+              <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page
+              </p>
+            </div>
+            <div class="dis2 search-div px-3">
+              <div class="row">
+                <div class="col-md-12">
+                  <h5 class="px-2 tex text-black-50">Your Keywords (optional)</h5>
+                </div>
+                <div class="col-md-6 example-container">
+                  <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                    <input matInput placeholder="">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 example-container">
+                  <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                    <input matInput placeholder="">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 example-container ">
+                  <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                    <input matInput placeholder="">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 example-container">
+                  <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                    <input matInput placeholder="">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 example-container">
+                  <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                    <input matInput placeholder="">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 example-container">
+                  <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                    <input matInput placeholder="">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 example-container">
+                  <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                    <input matInput  placeholder="">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- for-Categories -->
+        <div class="row mr-0 mt-3 pt-3 bg-light">
+            <div class="col-md-3">
+              <h4 class="pt-3 px-5 lg-1 lg-1">Categories</h4>
+            </div>
+            <div class="col-md-9">
+              <div class="dis1 p-3">
+                <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                  design to fill gaps in the page
+                </p>
+              </div>
+              <div class="dis2 example-container">
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="dis2 search-div px-3">
+                          <mat-form-field class="search-form-field" floatLabel="never">
+                              <mat-label>Category</mat-label>
+                            <mat-select>
+                              <mat-option *ngFor="let series of series" [value]="series.value">
+                                {{series.viewValue}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="dis2 search-div ">
+                          <mat-form-field class="search-form-field" floatLabel="never">
+                              <mat-label>Sub Categories</mat-label>
+                            <mat-select>
+                              <mat-option *ngFor="let series of series" [value]="series.value">
+                                {{series.viewValue}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                  </div>
+                </div>
+               
+                
+              </div>
+            </div>
+          </div>
+        <!-- for-age -->
+        <div class="row mr-0 mt-3 pt-3 bg-light">
+            <div class="col-md-3">
+              <h4 class="pt-3 px-5 lg-1 lg-1">Age and Grade Range</h4>
+            </div>
+            <div class="col-md-9">
+              <div class="dis1 p-3">
+                <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                  design to fill gaps in the page
+                </p>
+              </div>
+              <div class="dis2 example-container px-3">
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="dis2 search-div ">
+                          <mat-form-field class="search-form-field" floatLabel="never">
+                              <mat-label>Minimum</mat-label>
+                            <mat-select>
+                              <mat-option *ngFor="let series of series" [value]="series.value">
+                                {{series.viewValue}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="dis2 search-div ">
+                          <mat-form-field class="search-form-field" floatLabel="never">
+                              <mat-label>Maximum </mat-label>
+                            <mat-select>
+                              <mat-option *ngFor="let series of series" [value]="series.value">
+                                {{series.viewValue}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                  </div>
+                </div>
+               
+                
+              </div>
+            </div>
+          </div>
+          <!-- for-release -->
+          <div class="row mr-0 mt-3 pt-3 bg-light">
+              <div class="col-md-3">
+                <h4 class="pt-3 px-5 lg-1 lg-1">Release</h4>
+              </div>
+              <div class="col-md-9">
+                <div class="dis2 px-3 mb-3">
+                  <div class="card">
+                        <div class="card-body">
+                                <mat-radio-group aria-label="Select an option">
+                                    <mat-radio-button value="1"> Ready to Release</mat-radio-button>
+                                  </mat-radio-group>
+                        </div>
+                        <div class="card-footer">
+                            <mat-radio-group aria-label="Select an option">
+                                <mat-radio-button value="1"> Schedule a date</mat-radio-button>
+                              </mat-radio-group>
+                        </div>
+                      </div>
+                  
+                </div>
+              </div>
+            </div>
+        <div>
+          <button mat-button mat-raised-button class="bg-secondary m-2 ">Go Back</button>
+          <button mat-button matStepperNext mat-raised-button class="bg-warning arng m-2">Save and Continue</button>
+          <button mat-button mat-raised-button class="bg-secondary arng m-2">Save as Draft</button>
+        </div>
+      </form>
+    </mat-step>
+<!-- ===================2nd form start==================== -->
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>eBook Content</ng-template>
+        <!-- for-profile picture -->
+        <div class="row mr-0 mt-3 pt-3 bg-light">
+            <div class="col-md-3">
+              <h4 class="pt-3 px-5 lg-1 lg-1">Book Cover</h4>
+            </div>
+            <div class="col-md-9">
+              <div class="dis1 p-3">
+                <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                  design to fill gaps in the page
+                </p>
+              </div>
+              <div class="dis2 px-3 mb-3">
+                <div class="card">
+                      <div class="card-body">
+                          <div class="col-md-12">
+                              <mat-radio-group aria-label="Select an option">
+                                  <mat-radio-button value="1"> Ipsum refers to a dummy block of text that is often used in publishing and graphic design to fill gaps in the page</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                          <div class="row">
+                              <div class="col-md-3 px-5">
+                                <div class="img-card">
+                                  <img [src]="pictureUrl" height="149px" width="99px">
+                                </div>
+                              </div>
+                              <div class="col-md-9">
+                                  <div class="upload-btn-wrapper mt-5">
+                                      <button class="btn">Upload Book Cover</button>
+                                      <input type='file' (change)="onSelectFile($event)">
+                                    </div>
+                              </div>
+                            </div>
+                      </div>
+                      <div class="card-footer">
+                          <mat-radio-group aria-label="Select an option">
+                              <mat-radio-button value="1"> Ipsum refers to a dummy block of text that is often used in publishing and graphic design to fill gaps in the page</mat-radio-button>
+                            </mat-radio-group>
+                      </div>
+                    </div>
+                
+              </div>
+            </div>
+          </div>
+          <!-- for-cover-picture -->
+          <div class="row mr-0 mt-3 pt-3 bg-light">
+              <div class="col-md-3">
+                <h4 class="pt-3 px-5 lg-1 lg-1">Background Cover</h4>
+              </div>
+              <div class="col-md-9">
+                <div class="dis1 p-3">
+                  <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                    design to fill gaps in the page
+                  </p>
+                </div>
+                <div class="dis2 px-3 mb-3">
+                  <div class="card">
+                        <div class="card-body">
+                            <div class="col-md-12">
+                                <mat-radio-group aria-label="Select an option">
+                                    <mat-radio-button value="1"> Ipsum refers to a dummy block of text that is often used in publishing and graphic design to fill gaps in the page</mat-radio-button>
+                                  </mat-radio-group>
+                              </div>
+                            <div class="row">
+                                <div class="col-md-3 px-5">
+                                  <div class="img-card">
+                                    <img [src]="coverUrl" height="149px" width="99px">
+                                  </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="upload-btn-wrapper mt-5">
+                                        <button class="btn">Upload Background Cover</button>
+                                        <input type='file' (change)="onSelectFileCP($event)">
+                                      </div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="card-footer">
+                            <mat-radio-group aria-label="Select an option">
+                                <mat-radio-button value="1"> Ipsum refers to a dummy block of text that is often used in publishing and graphic design to fill gaps in the page</mat-radio-button>
+                              </mat-radio-group>
+                        </div>
+                      </div>
+                  
+                </div>
+              </div>
+            </div>
+           <!-- for eBook Name -->
+        <div class="row mr-0 mt-3 pt-3 bg-light">
+            <div class="col-md-3">
+              <h4 class="pt-3 px-5 lg-1 lg-1">ISBN Code</h4>
+            </div>
+            <div class="col-md-9">
+              <div class="dis1 p-3">
+                <h4 class="px-2 tex text-black-50">ISBN</h4>
+                <p class="px-2">Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                  design to fill gaps in the page
+                </p>
+              </div>
+              <div class="dis2 search-div example-container px-3">
+                <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                    <input matInput formControlName="secondCtrl" required>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        <div>
+          <button mat-button mat-raised-button matStepperPrevious class="bg-secondary m-2 ">Go Back</button>
+          <button mat-butto matStepperNext mat-raised-button class="bg-warning arng m-2">Save and Continue</button>
+          <button mat-button  class="bg-secondary arng m-2">Save as Draft</button>
+        </div>
+      </form>
+    </mat-step>
+<!-- ==================3rd form start============== -->
+    <mat-step>
+      <ng-template matStepLabel>eBook Finalise</ng-template>
+      <!-- Details -->
+      <div class="row mr-0 my-3 pt-3 bg-light">
+          <div class="col-md-3">
+            <h4 class="pt-3 px-5 lg-1 lg-1">Details</h4>
+          </div>
+          <div class="col-md-9">
+            <div class="dis1 p-3">
+              <p class="px-2">Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- ========================================================= -->
+      <div class="row mr-0 pt-3 bg-light">
+          
+        <div class="border m-5">
+            <div class="row">
+        <div class="col-md-12">
+          <h2 class="px-5 pt-5">Summary</h2>
+        </div>
+        <div class="col-md-6">
+            <p class="p-5 text-black-50 text-justify">Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page before the actual words are put into the finished product.
+                Lorem ipsum resembles Latin but has no real meaning
+                Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page before the actual words are put into the finished product.
+                Lorem ipsum resembles Latin but has no real meaning
+            </p>
+            <p class="p-5 text-black-50 text-justify">Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page before the actual words are put into the finished product.
+                Lorem ipsum resembles Latin but has no real meaning
+                Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page before the actual words are put into the finished product.
+                Lorem ipsum resembles Latin but has no real meaning
+              </p>
+              <p class="p-5 text-black-50 text-justify">Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                  design to fill gaps in the page before the actual words are put into the finished product.
+                  Lorem ipsum resembles Latin but has no real meaning
+                  Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page before the actual words are put into the finished product.
+                Lorem ipsum resembles Latin but has no real meaning
+                </p>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-12">
+                <p class="p-5 text-justify">Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                    design to fill gaps in the page before the actual words are put into the finished product.
+                    Lorem ipsum resembles Latin but has no real meaning
+                  </p>
+            </div>
+            <div class="col-md-12 text-justify">
+                <p class="p-5 ">Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                    design to fill gaps in the page before the actual words are put into the finished product.
+                    Lorem ipsum resembles Latin but has no real meaning
+                  </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+      <div>
+        <button mat-button mat-raised-button matStepperPrevious class="bg-secondary m-2 ">Go Back</button>
+          <button mat-butto matStepperNext mat-raised-button class="bg-warning arng m-2">Publish</button>
+          <button mat-button  class="bg-secondary arng m-2">Save as Draft</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

@@ -1,0 +1,361 @@
+<div class="m-5 border-c">
+  <mat-horizontal-stepper linear="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+        <ng-template matStepLabel>
+          Contributor Details
+        </ng-template>
+        <!-- for-language -->
+        <div class="row mr-0 pt-3 bg-light">
+          <div class="col-md-3">
+            <h4 class="pt-3 px-5 lg-1 lg-1">Language</h4>
+          </div>
+          <div class="col-md-9">
+            <div class="dis1 p-3">
+              <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page before the actual words are put into the finished product.
+                Lorem ipsum resembles Latin but has no real meaning
+              </p>
+            </div>
+            <div class="dis2 search-div px-3">
+              <mat-form-field class="search-form-field" floatLabel="never">
+                <mat-select>
+                  <mat-option *ngFor="let language of languages" [value]="language.value">
+                    {{language.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <!-- for-type -->
+        <div class="row mr-0 mt-3 pt-3 bg-light">
+          <div class="col-md-3">
+            <h4 class="pt-3 px-5 lg-1 lg-1">Type</h4>
+          </div>
+          <div class="col-md-9">
+            <div class="dis1 p-3">
+              <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page before the actual words are put into the finished product.
+                Lorem ipsum resembles Latin but has no real meaning
+              </p>
+            </div>
+            <div class="dis2 px-3">
+              <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="1">Author</mat-radio-button>
+                <mat-radio-button value="2">Publisher </mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <!-- for Name -->
+        <div class="row mr-0 mt-3 pt-3 bg-light">
+          <div class="col-md-3">
+            <h4 class="pt-3 px-5 lg-1 lg-1">Name</h4>
+          </div>
+          <div class="col-md-9">
+            <div class="dis1 p-3">
+              <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page
+              </p>
+            </div>
+            <div class="dis2 search-div example-container px-3">
+              <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                <input matInput name="FirstName" #FirstName="ngModel" [(ngModel)]="service.formData.FirstName"
+                  class="form-control" required>
+                  <mat-error *ngIf="FirstName.invalid && FirstName.touched">This field is required.</mat-error>
+                  <!-- <div class="validation-error" *ngIf="FirstName.invalid && FirstName.touched">This field is required.</div> -->
+              </mat-form-field>
+              <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                <input matInput name="LastName" #LastName="ngModel" [(ngModel)]="service.formData.LastName" class="form-control" required>
+                <mat-error *ngIf="LastName.invalid && LastName.touched">This field is required.</mat-error>
+                <!-- <div class="validation-error" *ngIf="LastName.invalid && LastName.touched">This field is required.</div> -->
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <!-- for-description -->
+        <div class="row mr-0 mt-3 pt-3 bg-light">
+          <div class="col-md-3">
+            <h4 class="pt-3 px-5 lg-1 lg-1">Description</h4>
+          </div>
+          <div class="col-md-9">
+            <div class="dis1 p-3">
+              <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page
+              </p>
+            </div>
+            <div class="dis2 search-div example-container px-3">
+              <mat-form-field row='3' class="search-form-field" floatLabel="never">
+                <textarea matInput rows="5" cols="40" placeholder="Textarea" maxlength="400"
+                name="description" #description="ngModel" [(ngModel)]="service.formData.description"
+                  class="form-control" required></textarea>
+                  <!-- <div class="validation-error" *ngIf="description.invalid && description.touched">This field is required.</div> -->
+                  <mat-error *ngIf="description.invalid && description.touched">This field is required.</mat-error>
+
+              </mat-form-field>
+              <mat-hint class="text-lg-right">Maximum 400 charactor's</mat-hint>
+            </div>
+          </div>
+        </div>
+        <!-- for-keywords -->
+        <div class="row mr-0 mt-3 pt-3 bg-light">
+          <div class="col-md-3">
+            <h4 class="pt-3 px-5 lg-1 lg-1">Keywords</h4>
+          </div>
+          <div class="col-md-9">
+            <div class="dis1 p-3">
+              <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page
+              </p>
+            </div>
+            <div class="dis2 search-div px-3">
+              <div class="row">
+                <div class="col-md-12">
+                  <h5 class="px-2 tex text-black-50">Your Keywords</h5>
+                </div>
+                <div class="col-md-6 example-container">
+                  <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                    <input matInput placeholder="" name="keyword1" #keyword1="ngModel" [(ngModel)]="service.formData.keyword1"
+                    class="form-control" required>
+                    <mat-error *ngIf="keyword1.invalid && keyword1.touched">This field is required.</mat-error>
+
+                    <!-- <div class="validation-error" *ngIf="keyword1.invalid && keyword1.touched">This field is required.</div> -->
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 example-container">
+                  <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                      <input matInput placeholder="" name="keyword2" #keyword2="ngModel" [(ngModel)]="service.formData.keyword2"
+                      class="form-control" required>
+                      <mat-error *ngIf="keyword2.invalid && keyword2.touched">This field is required.</mat-error>
+
+                      <!-- <div class="validation-error" *ngIf="keyword2.invalid && keyword2.touched">This field is required.</div> -->
+                    
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 example-container ">
+                  <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                      <input matInput placeholder="" name="keyword3" #keyword3="ngModel" [(ngModel)]="service.formData.keyword3"
+                      class="form-control" required>
+                      <mat-error *ngIf="keyword3.invalid && keyword3.touched">This field is required.</mat-error>
+
+                      <!-- <div class="validation-error" *ngIf="keyword3.invalid && keyword3.touched">This field is required.</div> -->
+                    
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 example-container">
+                  <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                      <input matInput placeholder="" name="keyword4" #keyword4="ngModel" [(ngModel)]="service.formData.keyword4"
+                      class="form-control" required>
+                      <mat-error *ngIf="keyword4.invalid && keyword4.touched">This field is required.</mat-error>
+
+                      <!-- <div class="validation-error" *ngIf="keyword4.invalid && keyword4.touched">This field is required.</div> -->
+                    
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 example-container">
+                  <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                      <input matInput placeholder="" name="keyword5" #keyword5="ngModel" [(ngModel)]="service.formData.keyword5"
+                      class="form-control" required>
+                      <mat-error *ngIf="keyword5.invalid && keyword5.touched">This field is required.</mat-error>
+
+                      <!-- <div class="validation-error" *ngIf="keyword5.invalid && keyword5.touched">This field is required.</div> -->
+                    
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 example-container">
+                  <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                      <input matInput placeholder="" name="keyword6" #keyword6="ngModel" [(ngModel)]="service.formData.keyword6"
+                      class="form-control" required>
+                      <mat-error *ngIf="keyword6.invalid && keyword6.touched">This field is required.</mat-error>
+
+                      <!-- <div class="validation-error" *ngIf="keyword6.invalid && keyword6.touched">This field is required.</div> -->
+                    
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 example-container">
+                  <mat-form-field class="example-full-width my-1 search-form-field" floatLabel="never">
+                      <input matInput placeholder="" name="keyword7" #keyword7="ngModel" [(ngModel)]="service.formData.keyword7"
+                      class="form-control" required>
+                      <mat-error *ngIf="keyword7.invalid && keyword7.touched">This field is required.</mat-error>
+
+                      <!-- <div class="validation-error" *ngIf="keyword7.invalid && keyword7.touched">This field is required.</div> -->
+                    
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- for-profile picture -->
+        <div class="row mr-0 mt-3 pt-3 bg-light">
+          <div class="col-md-3">
+            <h4 class="pt-3 px-5 lg-1 lg-1">Profile Picture</h4>
+          </div>
+          <div class="col-md-9">
+            <div class="dis1 p-3">
+              <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page
+              </p>
+            </div>
+            <div class="dis2 px-3 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="col-md-12">
+                    <mat-radio-group aria-label="Select an option">
+                      <mat-radio-button value="1"> Ipsum refers to a dummy block of text that is often used in
+                        publishing and graphic design to fill gaps in the page</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3 px-5">
+                      <div class="img-card">
+                        <img [src]="pictureUrl" height="149px" width="99px">
+                      </div>
+                    </div>
+                    <div class="col-md-9">
+                      <div class="upload-btn-wrapper mt-5">
+                        <button class="btn">Upload Profile Pic</button>
+                        <input type='file' (change)="onSelectFile($event)">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <mat-radio-group aria-label="Select an option">
+                    <mat-radio-button value="1"> Ipsum refers to a dummy block of text that is often used in publishing
+                      and graphic design to fill gaps in the page</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- for-cover-picture -->
+        <div class="row mr-0 mt-3 pt-3 bg-light">
+          <div class="col-md-3">
+            <h4 class="pt-3 px-5 lg-1 lg-1">Cover Picture</h4>
+          </div>
+          <div class="col-md-9">
+            <div class="dis1 p-3">
+              <p>Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page
+              </p>
+            </div>
+            <div class="dis2 px-3 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="col-md-12">
+                    <mat-radio-group aria-label="Select an option">
+                      <mat-radio-button value="1"> Ipsum refers to a dummy block of text that is often used in
+                        publishing and graphic design to fill gaps in the page</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3 px-5">
+                      <div class="img-card">
+                        <img [src]="coverUrl" height="149px" width="99px">
+                      </div>
+                    </div>
+                    <div class="col-md-9">
+                      <div class="upload-btn-wrapper mt-5">
+                        <button class="btn">Upload Cover Pic</button>
+                        <input type='file' (change)="onSelectFileCP($event)">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <mat-radio-group aria-label="Select an option">
+                    <mat-radio-button value="1"> Ipsum refers to a dummy block of text that is often used in publishing
+                      and graphic design to fill gaps in the page</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div>
+          <button mat-button mat-raised-button class="bg-secondary m-2 ">Go Back</button>
+          <button mat-button matStepperNext mat-raised-button class="bg-warning arng m-2" type="submit" [disabled]="form.invalid">Save and Continue</button>
+          <button mat-button mat-raised-button class="bg-secondary arng m-2">Save as Draft</button>
+        </div>
+      </form>
+    </mat-step>
+    <!-- <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your address</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Address" formControlName="secondCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step> -->
+    <mat-step>
+      <ng-template matStepLabel>Finalization</ng-template>
+      <div class="row mr-0 pt-3 bg-light">
+        <div class="border m-5">
+          <div class="row">
+            <div class="col-md-12">
+              <h2 class="px-5 pt-5">Summary</h2>
+            </div>
+            <div class="col-md-6">
+              <p class="p-5 text-black-50 text-justify">Lorem Ipsum refers to a dummy block of text that is often used
+                in publishing and graphic
+                design to fill gaps in the page before the actual words are put into the finished product.
+                Lorem ipsum resembles Latin but has no real meaning
+                Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page before the actual words are put into the finished product.
+                Lorem ipsum resembles Latin but has no real meaning
+              </p>
+              <p class="p-5 text-black-50 text-justify">Lorem Ipsum refers to a dummy block of text that is often used
+                in publishing and graphic
+                design to fill gaps in the page before the actual words are put into the finished product.
+                Lorem ipsum resembles Latin but has no real meaning
+                Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page before the actual words are put into the finished product.
+                Lorem ipsum resembles Latin but has no real meaning
+              </p>
+              <p class="p-5 text-black-50 text-justify">Lorem Ipsum refers to a dummy block of text that is often used
+                in publishing and graphic
+                design to fill gaps in the page before the actual words are put into the finished product.
+                Lorem ipsum resembles Latin but has no real meaning
+                Lorem Ipsum refers to a dummy block of text that is often used in publishing and graphic
+                design to fill gaps in the page before the actual words are put into the finished product.
+                Lorem ipsum resembles Latin but has no real meaning
+              </p>
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-12">
+                  <p class="p-5 text-justify">Lorem Ipsum refers to a dummy block of text that is often used in
+                    publishing and graphic
+                    design to fill gaps in the page before the actual words are put into the finished product.
+                    Lorem ipsum resembles Latin but has no real meaning
+                  </p>
+                </div>
+                <div class="col-md-12 text-justify">
+                  <p class="p-5 ">Lorem Ipsum refers to a dummy block of text that is often used in publishing and
+                    graphic
+                    design to fill gaps in the page before the actual words are put into the finished product.
+                    Lorem ipsum resembles Latin but has no real meaning
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button mat-button mat-raised-button matStepperPrevious class="bg-secondary m-2 ">Go Back</button>
+        <button mat-butto matStepperNext mat-raised-button class="bg-warning arng m-2">Publish</button>
+        <button mat-button class="bg-secondary arng m-2">Save as Draft</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

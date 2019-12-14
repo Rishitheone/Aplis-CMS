@@ -1,0 +1,55 @@
+.example-tree-invisible {
+  display: none;
+}
+
+.example-tree ul,
+.example-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+.px-t {
+  padding-right: 17rem;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+.bgt{
+  background: #a8a8a8;
+}
+button.btn.btn1 {
+  position: absolute;
+  left: 3rem;
+  font-size: 20px;
+  font-weight: 900;
+}
+button.btn.btn2 {
+  position: absolute;
+  left: 8rem;
+  font-size: 20px;
+  font-weight: 900;
+}
+button.btn.btn12 {
+  border: 1px solid #b7b6b6;
+  border-radius: 0px;
+  padding: 10px 52px;
+  background: #a8a8a8;
+}
+
+//////////////////////////////////
+.mat-tree {
+  background: transparent !important;
+}
+.example-tree {
+  li {
+    margin-top: 0;
+    margin-bottom: 0;
+    min-height: 100px;
+    position: relative;
+    list-style-type: none;
+  }
+}
+td {
+  font-size: 20px;
+}

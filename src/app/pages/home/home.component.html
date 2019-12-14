@@ -1,0 +1,116 @@
+<div class="p-3 m-5  bg-light border-c">
+<div class="row mx-5 px-5 pt-3 pb-3">
+  <div class="col-sm-6 col-md-4 col-lg-2 pt-1 ">
+    <a routerLink='/home/book'>
+      <div class="card  border-d">
+          <p class="center"> +</p>
+          <p class="text-center pt-3 name-1">eBook</p>
+      </div>
+    </a>
+  </div>
+  <div class="col-sm-6 col-md-4 col-lg-2 pt-1">
+     <a routerLink='/home/category'>
+      <div class="card border-d">
+          <p class="center"> +</p>
+          <p class="text-center pt-3 name-1">Category</p>
+         </div>
+        
+      </a>
+  </div>
+  <div class="col-sm-6  col-md-4 col-lg-2 pt-1">
+    <a routerLink='/home/series'>
+      <div class="card border-d">
+          <p class="center"> +</p>
+          <p class="text-center pt-3 name-1">Series</p>
+      </div>
+    </a>
+  </div>
+  <div class="col-sm-6 col-md-4 col-lg-2 pt-1">
+      <div class="card border-d">
+          <p class="center"> +</p>
+          <p class="text-center pt-3 name-1">User</p>
+         </div>
+        
+  </div>
+  <div class="col-sm-6 col-md-4 col-lg-2 pt-1">
+    <a routerLink='/home/Author-list'>
+      <div class="card border-d">
+          <p class="center"> +</p>
+          <p class="text-center pt-3 name-1">Author</p>
+         </div>
+        </a> 
+  </div>
+  <div class="col-sm-6 col-md-4 col-lg-2 pt-1">
+      <div class="card border-d">
+       <p class="center"> +</p> 
+       <p class="text-center pt-3 name-1">Editor</p>
+          </div>
+        
+  </div>
+</div>
+</div>
+<!-- book list================================ -->
+<div class="mx-5 mt-5">
+<div class="row">
+     <div class="col-md-3">
+       <h3 class="text-center pt-3">Your Book</h3>
+     </div>
+     <div class="col-md-3 search-div">
+        <mat-form-field class="pt-2 search-form-field" floatLabel="never">
+            <mat-label>Sort by</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let short of short" [value]="short.value">
+                {{short.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+     </div>
+     <div class="col-md-3 search-div">
+        <mat-form-field class="pt-2 search-form-field" floatLabel="never">
+            <mat-label>Filter by</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let filter of filter" [value]="filter.value">
+                {{filter.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+     </div>
+     <div class="col-md-3 search-div">
+        <mat-form-field  class="pt-2 search-form-field" floatLabel="never">
+            <mat-label>Search</mat-label>
+            <input matInput placeholder="Search">
+            <mat-icon matSuffix>search</mat-icon>
+            <!-- <mat-hint>Hint</mat-hint> -->
+          </mat-form-field>
+     </div>
+  </div>
+</div>
+<div class="mx-5 mb-5 bg-light border-c">
+  <div class="row p-3">
+    <div class="col-md-4 border-right px-5 py-4">
+        <div class="book-cover  border-d">
+        </div>
+        <div class="title">
+        <h2>Title</h2>
+        <h4>Subtitle</h4>
+        <p>By Author</p>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="dt-1 border-bottom">
+      <p>Aplis eBook</p>
+      <h3>Draft</h3>
+      <h5>Last Modified on 3rd November 2020</h5>
+    </div>
+    <div class="for-b border-bottom pt-3">
+      <button>Continue</button>
+      <button class="bg-secondary">...</button>
+    </div>
+    <div class="for-page">Page:36</div>
+    </div>
+  </div>
+  <mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons class="border">
+</mat-paginator>
+</div>
