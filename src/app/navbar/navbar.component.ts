@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,10 +10,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class NavbarComponent implements OnInit {
   title:'';
-  constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private titleService: Title
+  constructor(private _authService:UserService
   ) {}
 
   ngOnInit() {

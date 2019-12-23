@@ -1,64 +1,136 @@
 <div class="m-5 ">
-    <mat-toolbar>
-      <mat-toolbar-row>
-        <span>Category Management</span>
-        <span class="example-spacer"></span>
-        <span>
-          <button class="btn btn12" (click)="openDialog()">Add New Category</button>
-        </span>
-      </mat-toolbar-row>
-    </mat-toolbar>
-    <mat-toolbar class="my-2 bgt">
-        <mat-toolbar-row style="width: 100%;">
-          <span style="width: 70%;">Title</span>
-          <span style="width: 15%;">Date</span>
-          <span style="width: 15%;">Status</span>
-        </mat-toolbar-row>
-      </mat-toolbar>
-    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
-        <!-- This is the tree node template for leaf nodes -->
-        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-          <li class="mat-tree-node">
-            <!-- use a disabled button to provide padding for tree leaf -->
-            <button mat-icon-button disabled></button>
-             <table id="customers" style="width: 100%;">
-                <tr>
-                  <td style="width: 70%;">{{node.name}}<br>
-                  <button class="btn btn1" (click)="openDialog()">Edit&nbsp;&nbsp;|</button>
-                  <button class="btn btn2">Delete</button>
-                  </td>
-                  <td style="width: 15%;">{{node.status}}</td>
-                  <td style="width: 15%;">{{node.date}}</td>
-                </tr>
-              </table>
-          </li>
-        </mat-tree-node>
-        <!-- This is the tree node template for expandable nodes -->
-        <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-          <li class="mt-3 bg-white">
-            <div class="mat-tree-node">
-              <button mat-icon-button matTreeNodeToggle
-                      [attr.aria-label]="'toggle ' + node.name">
-                <mat-icon class="mat-icon-rtl-mirror">
-                  {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-                </mat-icon>
-              </button>
-              <table id="customers" style="width:100%;">
-                <tr>
-                  <td style="width: 70%;">{{node.name}}<br>
-                    <button class="btn btn1" (click)="openDialog()">Edit &nbsp;&nbsp;|</button>
-                    <button class="btn btn2">Delete</button>
-                  </td>
-                  <td style="width: 15%;">{{node.status}}</td>
-                  <td style="width: 15%;">{{node.date}}</td>
-                </tr>
-              </table>
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <span>Category Management</span>
+      <span class="example-spacer"></span>
+      <span>
+        <button class="btn btn12" (click)="populationForm()">Add New Category</button>
+      </span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-toolbar class="my-2 bgt">
+    <mat-toolbar-row style="width: 100%;">
+      <span style="width: 70%;">Title</span>
+      <span style="width: 15%;">Date</span>
+      <span style="width: 15%;">Status</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <!-- ///////////////// 1staccordion -->
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel class="for-bg">
+      <mat-expansion-panel-header  class="set-bg">
+        <mat-panel-title class="w-100">
+          Primary Education
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="p-2">
+        <mat-accordion class="example-headers-align">
+          <mat-expansion-panel *ngFor="let node of Primary;">
+            <mat-expansion-panel-header (click)="onSelect(node)" class="w-100">
+              <mat-panel-title class="w-75">
+                {{node.name}}<br>
+              </mat-panel-title>
+              <mat-panel-description class="w-15">
+                {{node.created_at | date}}
+              </mat-panel-description>
+              <mat-panel-description class="w-15">
+                {{node.status}}
+              </mat-panel-description>
+              <mat-panel-description class="w-15">
+                <mat-icon class="delete">delete</mat-icon>
+                <mat-icon class="edit">edit</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div *ngFor="let sub of AllSubCategory" class="border">
+              <ul class="for-line w-100 pt-3">
+                <li class="w-75">{{sub.name}}</li>
+                <li class="w-15">{{sub.created_at}}</li>
+                <li class="w-15">{{sub.status}}</li>
+                <li><mat-icon class="delete">delete</mat-icon></li>
+                <li><mat-icon class="edit">edit</mat-icon></li>
+              </ul>
             </div>
-            <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
-              <ng-container matTreeNodeOutlet></ng-container>
-            </ul>
-          </li>
-        </mat-nested-tree-node>
-      </mat-tree>
-  </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+       </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <!-- ///////end////////// -->
+  <!-- ///////////////// 2nd accordion -->
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel class="mt-1 for-bg">
+      <mat-expansion-panel-header  class="set-bg">
+        <mat-panel-title class="w-100">
+          Secondary Education
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+        <div class="p-2">
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let node of Secondary;">
+              <mat-expansion-panel-header (click)="onSelect(node)" class="w-100">
+                <mat-panel-title class="w-75">
+                  {{node.name}}
+                </mat-panel-title>
+                <mat-panel-description class="w-15">
+                  {{node.created_at | date}}
+                </mat-panel-description>
+                <mat-panel-description class="w-15">
+                  {{node.status}}
+                </mat-panel-description>
+        
+              </mat-expansion-panel-header>
+              <div *ngFor="let sub of AllSubCategory"  class="border">
+                <ul class="for-line w-100 pt-3">
+                  <li class="w-75">{{sub.name}}</li>
+                  <li class="w-15">{{sub.created_at}}</li>
+                  <li class="w-15">{{sub.status}}</li>
+                </ul>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+
+        </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <!-- ///////end////////// -->
+  <!-- ///////////////// 3rdaccordion -->
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel class="mt-1 for-bg">
+      <mat-expansion-panel-header  class="set-bg">
+        <mat-panel-title class="w-100">
+          Higher Education
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+         <div>
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let node of Higher;">
+              <mat-expansion-panel-header (click)="onSelect(node)"  class="w-100">
+                <mat-panel-title class="w-75">
+                  {{node.name}}
+                </mat-panel-title>
+                <mat-panel-description class="w-15">
+                  {{node.created_at | date}}
+                </mat-panel-description>
+                <mat-panel-description class="w-15">
+                  {{node.status}}
+                </mat-panel-description>
+        
+              </mat-expansion-panel-header>
+              <div *ngFor="let sub of AllSubCategory" class="border">
+                <ul class="for-line w-100 pt-3">
+                  <li class="w-75">{{sub.name}}</li>
+                  <li class="w-15">{{sub.created_at}}</li>
+                  <li class="w-15">{{sub.status}}</li>
+                </ul>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+         </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <!-- ///////end////////// -->
+
+  
+</div>
+
 

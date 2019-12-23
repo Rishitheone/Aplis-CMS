@@ -7,16 +7,19 @@ import { AuthorsListComponent } from './pages/author/authors-list/authors-list.c
 import { AuthorsComponent } from './pages/author/authors/authors.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { SeriesComponent } from './pages/series/series.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent,data:{title:'Content Management System'} },
-  { path: 'home/author', component: AuthorComponent },
-  { path: 'home/category', component: CategoryComponent,data:{title:'Define Categories'} },
-  { path: 'home/authors', component: AuthorsComponent},
-  { path: 'home/book', component: BookComponent,data:{title:'Book Publisher'} },
-  { path: 'home/Author-list', component: AuthorsListComponent,data:{title:'Auhor And Publisher'} },
-  { path: 'home/series', component: SeriesComponent,data:{title:'Book Series'}},
+  { path: '', redirectTo:'/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent,canActivate:[AuthGuard]},
+  { path: 'home/author', component: AuthorComponent,canActivate:[AuthGuard] },
+  { path: 'home/category', component: CategoryComponent,canActivate:[AuthGuard]},
+  { path: 'home/authors', component: AuthorsComponent,canActivate:[AuthGuard]},
+  { path: 'home/book', component: BookComponent,canActivate:[AuthGuard]},
+  { path: 'home/Author-list', component: AuthorsListComponent ,canActivate:[AuthGuard]},
+  { path: 'home/series', component: SeriesComponent,canActivate:[AuthGuard]},
 ];
 
 @NgModule({

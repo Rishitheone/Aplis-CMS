@@ -1,61 +1,99 @@
 import { Component, OnInit } from '@angular/core';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CategoryFormComponent } from './category-form/category-form.component';
+import { UserService } from 'src/app/shared/user.service';
+import { ToastrService } from 'ngx-toastr';
+import { CategoryService } from 'src/app/shared/category.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
-interface FoodNode {
-  name: string;
-  date:string;
-  status:string;
-  children?: FoodNode[];
-}
-
-const TREE_DATA: FoodNode[] = [
-  {
-    name: 'Primary Education',
-    date:"12/04/2019",
-    status:'Publish',
-    children: [
-      {name: 'Class 5', date:"13/05/2019",status:'Publish',},
-      {name: 'Class 4', date:"16/11/2019",status:'Publish',},
-      {name: 'Class 2',date:"1/07/2019",status:'Publish',},
-    ]
-  }, {
-    name: 'Middle Education',
-    date:"11/12/2018",
-    status:'Publish',
-    children: [
-      {name: 'Class 5', date:"13/05/2019",status:'Publish',},
-      {name: 'Class 4', date:"16/11/2019",status:'Publish',},
-    ]
-  },
-];
-
-/**
- * @title Tree with nested nodes
- */
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss'],
 })
-export class CategoryComponent  {
-  treeControl = new NestedTreeControl<FoodNode>(node => node.children);
-  dataSource = new MatTreeNestedDataSource<FoodNode>();
+export class CategoryComponent implements OnInit {
+  public Primary = [];
+  public Secondary = [];
+  public Higher = [];
+  public AllSubCategory = [];
+  selectedName:string;
+  isHidden = true;
+  
+  public parent_category_id='';
+  constructor(public dialog: MatDialog, private service: UserService, private _allCategory: CategoryService,
+    private _router: Router, private toastr: ToastrService) { }
 
-  constructor(public dialog: MatDialog) {
-    this.dataSource.data = TREE_DATA;
+    onSelect(selectedItem: any) {
+      // this.parent_category_id = selectedItem.id;
+      this.callSubCateApi(selectedItem.id);
+      // console.log("Selected item Id: ", this.parent_category_id); // You get the Id of the selected item here
+     
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(CategoryFormComponent);
+  ngOnInit() {
+    
+    // this.service.refreshList();
+    this._allCategory.getDropPrimary()
+      .subscribe(
+        data => this.Primary = data.data,
+        err => {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status === 401) {
+              this._router.navigate(['/login'])
+            }
+          }
+        }
+      )
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    this._allCategory.getDropSecondary()
+      .subscribe(
+        data => this.Secondary = data.data,
+        err => {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status === 401) {
+              this._router.navigate(['/login'])
+            }
+          }
+        }
+      )
+
+    this._allCategory.getDropHigher()
+      .subscribe(
+        data => this.Higher = data.data,
+        err => {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status === 401) {
+              this._router.navigate(['/login'])
+            }
+          }
+        }
+      )
+
+    
+
   }
-
-  hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
+  populationForm() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "80%";
+    this.dialog.open(CategoryFormComponent, dialogConfig);
+  }
+  callSubCateApi(selectedItem){
+    this._allCategory.getAllSubCategory(selectedItem)
+    .subscribe(
+      data => this.AllSubCategory = data.data,
+      err => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            this._router.navigate(['/login'])
+          }
+        }
+      }
+    )
+  }
 }

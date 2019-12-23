@@ -11,7 +11,7 @@ import { AuthorComponent } from './pages/author/author.component';
 import { BookComponent } from './pages/book/book.component';
 import { MaterialModule } from './material/material.module';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { UserService } from './shared/user.service';
 import { AuthorsComponent } from './pages/author/authors/authors.component';
@@ -20,6 +20,11 @@ import { CategoryComponent } from './pages/category/category.component';
 import { CategoryFormComponent } from './pages/category/category-form/category-form.component';
 import { SeriesComponent } from './pages/series/series.component';
 import { SeriesFormComponent } from './pages/series/series-form/series-form.component';
+import { LoginComponent } from './login/login.component';
+import { AuthInterceptor } from './_guards/auth.interceptor';
+import {TreeTableModule} from 'primeng/treetable';
+import { CategoryDispalyComponent } from './pages/category/category-dispaly/category-dispaly.component';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +39,8 @@ import { SeriesFormComponent } from './pages/series/series-form/series-form.comp
     CategoryFormComponent,
     SeriesComponent,
     SeriesFormComponent,
+    LoginComponent,
+    CategoryDispalyComponent
     
   ],
   imports: [
@@ -42,6 +49,7 @@ import { SeriesFormComponent } from './pages/series/series-form/series-form.comp
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    TreeTableModule,
     //Matrial Module
     MaterialModule,
     HttpClientModule,
@@ -50,7 +58,11 @@ import { SeriesFormComponent } from './pages/series/series-form/series-form.comp
     }),
   ],
   exports:[MaterialModule],
-  providers: [UserService ],
+  providers: [UserService,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  } ],
   bootstrap: [AppComponent],
   entryComponents: [
     CategoryFormComponent,

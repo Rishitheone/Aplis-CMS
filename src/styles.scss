@@ -18,6 +18,9 @@ body {
   margin: 0;
   background-color: #dad8d8 !important;
 }
+.mat-expansion-panel-body {
+  padding: 0 !important;
+}
 
 .mat-horizontal-stepper-header-container {
   background: #fff !important;

@@ -1,91 +1,100 @@
-<mat-toolbar>
-  <mat-toolbar-row>
-    <span> New Category</span>
-    <span class="example-spacer"></span>
-    <button mat-button mat-dialog-close>Close</button>
-    <button mat-button>Save</button>
-    <button mat-button>Publish</button>
-  </mat-toolbar-row>
-</mat-toolbar>
-<mat-dialog-content class="mat-typography">
-  <div class="row m-0">
-    <div class="col-md-7 border">
-      <div class="for-w border-bottom">
-        <label>Title *</label>
-        <input type="text">
-      </div>
-      <div class="for-w border-bottom">
-        <label>Description *</label>
-        <textarea name="" id="" cols="10" rows="3"></textarea>
-      </div>
-      <div class="row m-0 for-w">
-        <label>Your Keywords(optional)</label>
-        <div class="col-md-6 mt-1 mx-0">
-          <input type="text">
-        </div>
-        <div class="col-md-6 mt-1 mx-0">
-          <input type="text">
-        </div>
-        <div class="col-md-6 mt-1 mx-0">
-          <input type="text">
-        </div>
-        <div class="col-md-6 mt-1 mx-0">
-          <input type="text">
-        </div>
-        <div class="col-md-6 mt-1 mx-0">
-          <input type="text">
-        </div>
-        <div class="col-md-6 mt-1 mx-0">
-          <input type="text">
-        </div>
-      </div>
-    </div>
-    <div class="col-md-5 border">
-      <mat-list role="list">
-        <mat-list-item role="listitem">Parent Category
-          <div class="dis2 search-div px-3">
-            <mat-form-field class="search-form-field" floatLabel="never">
-              <mat-select>
-                <mat-option *ngFor="let language of languages" [value]="language.value">
-                  {{language.viewValue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item role="listitem">Created Date :
-          <div class="dis2 search-div px-3">
-            <mat-form-field class="search-form-field" floatLabel="never">
-              <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-          </div>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item role="listitem">Published Date :
-            <div class="dis2 search-div px-3">
-                <mat-form-field class="search-form-field" floatLabel="never">
-                  <input matInput [matDatepicker]="picker1" placeholder="Choose a date">
-                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                  <mat-datepicker #picker1></mat-datepicker>
-                </mat-form-field>
-              </div>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item role="listitem">Modified Date :
-            <div class="dis2 search-div px-3">
-                <mat-form-field class="search-form-field" floatLabel="never">
-                  <input matInput [matDatepicker]="picker2" placeholder="Choose a date">
-                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                  <mat-datepicker #picker2></mat-datepicker>
-                </mat-form-field>
-              </div>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-      </mat-list>
+<form [formGroup]="formData" (ngSubmit)="onSubmit()">
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <span> New Category</span>
+      <span class="example-spacer"></span>
+      <button mat-button mat-dialog-close type="reset">Close</button>
+      <button mat-button (click)="onDraft()">Save Draft</button>
+      <button mat-button type="submit" >Publish</button>
 
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-dialog-content class="mat-typography">
+    <!-- ======form part===============  -->
+    <div class="row m-0">
+      <div class="col-md-7 border">
+        <div class="for-w border-bottom">
+          <label>Title *</label>
+          <input type="text" name="name" formControlName="name" required />
+        </div>
+        <div class="for-w border-bottom">
+          <label>Description *</label>
+          <textarea name="description" type="text" cols="10" rows="3" formControlName="description" required></textarea>
+        </div>
+
+        <div class="row m-0 for-w" formArrayName="tags">
+          <button (click)="addAlias()" type="button">Add Alias</button>
+          <!-- <label>Your Keywords(optional)</label> -->
+          <div class="col-md-6 mt-1 mx-0" *ngFor="let address of tags.controls; let i=index;">
+            <input name="tags" type="text" [formControlName]="i">
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-5 border">
+        <mat-list>
+          <mat-list-item role="listitem">Type
+            <div class="dis2 search-div px-3">
+              <mat-form-field class="search-form-field" floatLabel="never">
+                <mat-select name="type" formControlName="type" [(ngModel)]="selectedFood2"
+                  (ngModelChange)="onFoodSelection2()" required>
+                  <mat-option *ngFor="let type of types" [value]="type.value">
+                    {{type.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <div class=" border" *ngIf="selectedFood2 == 'primary'">
+            <mat-list-item role="listitem">Parent Category
+              <div class="dis2 search-div px-3">
+                <mat-form-field class="search-form-field" floatLabel="never">
+                  <mat-select name="type" formControlName="parent_category_id" required>
+                    <mat-option value=''>no Parent</mat-option>
+                    <mat-option *ngFor="let primary of primary" [value]="primary.id">
+                      {{primary.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </mat-list-item>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="border" *ngIf="selectedFood2 == 'secondary'">
+            <mat-list-item role="listitem">Parent Category
+              <div class="dis2 search-div px-3">
+                <mat-form-field class="search-form-field" floatLabel="never">
+                  <mat-select name="type" formControlName="parent_category_id" required>
+                    <mat-option value=''>no Parent</mat-option>
+                    <mat-option *ngFor="let secondary of secondary" [value]="secondary.id">
+                      {{secondary.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </mat-list-item>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="col-md-5 border" *ngIf="selectedFood2 == 'higher'">
+            <mat-list-item role="listitem">Parent Category
+              <div class="dis2 search-div px-3">
+                <mat-form-field class="search-form-field" floatLabel="never">
+                  <mat-select name="type" formControlName="parent_category_id" required>
+                    <mat-option value=''>no Parent</mat-option>
+                    <mat-option *ngFor="let higher of higher" [value]="higher.id">
+                      {{higher.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </mat-list-item>
+          </div>
+        </mat-list>
+      </div>
     </div>
-  </div>
-</mat-dialog-content>
+
+
+  </mat-dialog-content>
+</form>

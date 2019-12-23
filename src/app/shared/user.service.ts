@@ -1,35 +1,32 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Author } from './author.model';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { RootObject } from './all.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
-  formData  : Author;
-  list : Author[];
-  readonly rootURL ="http://localhost:7741/api"
-
-  constructor(private http : HttpClient) { }
-
-  postEmployee(formData : Author){
-   return this.http.post(this.rootURL+'/Author',formData);
-    
+  
+  private _logInUrl = "http://35.173.187.82/aplis/public/api/admin/sign-in";
+  
+  constructor(private http:HttpClient,private _router:Router) { }
+  
+  loginUser(user){
+    return this.http.post<RootObject>(this._logInUrl,user)
   }
-
-  refreshList(){
-    this.http.get(this.rootURL+'/Author')
-    .toPromise().then(res => this.list = res as Author[]);
+  loggedIn(){
+    return !!localStorage.getItem('token')
   }
+  getToken(){
+    return localStorage.getItem('token')
+  }
+  logoutUser(){
+    localStorage.removeItem('token')
+    this._router.navigate(['/login'])
+  }
+  
 
-  putEmployee(formData : Author){
-    return this.http.put(this.rootURL+'/Author/'+formData.FirstName,formData);
-     
-   }
-
-   deleteEmployee(id : number){
-    return this.http.delete(this.rootURL+'/Author/'+id);
-   }
 }

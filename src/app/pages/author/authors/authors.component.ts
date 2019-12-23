@@ -27,48 +27,48 @@ constructor(private _formBuilder: FormBuilder,private service: UserService,
   private toastr: ToastrService) { }
 
 ngOnInit() {
-  this.resetForm();
+  // this.resetForm();
 }
 
-resetForm(form?: NgForm) {
-  if (form != null)
-    form.resetForm();
-  this.service.formData = {
-    FirstName: '',
-  LastName: '',
-  description: '',
-  keyword1: '',
-  keyword2: '',
-  keyword3: '',
-  keyword4: '',
-  keyword5: '',
-  keyword6: '',
-  keyword7: '',
-  }
-}
+// resetForm(form?: NgForm) {
+//   if (form != null)
+//     form.resetForm();
+//   this.service.formData = {
+//     FirstName: '',
+//   LastName: '',
+//   description: '',
+//   keyword1: '',
+//   keyword2: '',
+//   keyword3: '',
+//   keyword4: '',
+//   keyword5: '',
+//   keyword6: '',
+//   keyword7: '',
+//   }
+// }
 
-onSubmit(form: NgForm) {
-  if (form.value.EmployeeID == null)
-    this.insertRecord(form);
-  else
-    this.updateRecord(form);
-}
+// onSubmit(form: NgForm) {
+//   if (form.value.EmployeeID == null)
+//     this.insertRecord(form);
+//   else
+//     this.updateRecord(form);
+// }
 
-insertRecord(form: NgForm) {
-  this.service.postEmployee(form.value).subscribe(res => {
-    this.toastr.success('Inserted successfully', 'EMP. Register');
-    this.resetForm(form);
-    this.service.refreshList();
-  });
-}
+// insertRecord(form: NgForm) {
+//   this.service.postEmployee(form.value).subscribe(res => {
+//     this.toastr.success('Inserted successfully', 'EMP. Register');
+//     this.resetForm(form);
+//     this.service.refreshList();
+//   });
+// }
 
-updateRecord(form: NgForm) {
-  this.service.putEmployee(form.value).subscribe(res => {
-    this.toastr.info('Updated successfully', 'EMP. Register');
-    this.resetForm(form);
-    this.service.refreshList();
-  });
-}
+// updateRecord(form: NgForm) {
+//   this.service.putEmployee(form.value).subscribe(res => {
+//     this.toastr.info('Updated successfully', 'EMP. Register');
+//     this.resetForm(form);
+//     this.service.refreshList();
+//   });
+// }
 
 onSelectFile(event) {
   if (event.target.files && event.target.files[0]) {
