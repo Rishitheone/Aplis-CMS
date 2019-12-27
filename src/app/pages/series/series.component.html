@@ -10,22 +10,28 @@
   </mat-toolbar>
   <mat-toolbar class="my-2 bgt">
     <mat-toolbar-row style="width: 100%;">
-      <span style="width: 40%;">Title</span>
-      <span style="width: 40%;">Code</span>
-      <span style="width: 10%;">Date</span>
-      <span style="width: 10%;">Status</span>
+      <span style="width: 35%;">Title</span>
+      <span style="width: 35%;">Code</span>
+      <span style="width: 15%;">Date</span>
+      <span style="width: 15%;">Status</span>
     </mat-toolbar-row>
   </mat-toolbar>
   <table style="width: 100%;" class="mt-4">
     <tr class="bg-light ht border" *ngFor='let series of dataSource'>
-      <td style="width: 40%;">{{series.subject}}
+      <td style="width: 35%;">{{series.title}}
         <br>
-        <button class="btn btn1" (click)="openDialog()">Edit&nbsp;&nbsp;|</button>
-        <button class="btn btn2">Delete</button>
+        <button class="btn btn1" (click)="onEdit(series)">Edit&nbsp;&nbsp;|</button>
+        <button class="btn btn2" (click)="onDelete(series)">Delete</button>
       </td>
-      <td style="width: 40%;">{{series.code}}</td>
-      <td style="width: 10%;">{{series.date}}</td>
-      <td style="width: 10%;">{{series.status}}</td>
+      <td style="width: 35%;">{{series.series_code}}</td>
+      <td style="width: 15%;">{{series.created_at | date}}</td>
+      <td style="width: 15%;">{{series.status}}</td>
+      <td style="width: 15%;">{{series.id}}</td>
     </tr>
   </table>
+</div>
+
+<div class="m-5 " *ngIf="isLoading" 
+   style="display: flex; justify-content: center; align-items: center">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>

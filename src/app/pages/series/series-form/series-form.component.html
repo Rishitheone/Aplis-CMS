@@ -1,10 +1,12 @@
-<mat-toolbar>
+<form #form="ngForm" (submit)=onSubmit(form)>
+  <mat-toolbar>
     <mat-toolbar-row>
       <span> New Series</span>
       <span class="example-spacer"></span>
-      <button mat-button mat-dialog-close>Close</button>
-      <button mat-button>Save</button>
-      <button mat-button>Publish</button>
+      <button mat-button mat-dialog-close type="reset">Close</button>
+      <button mat-button type="button">Save</button>
+      <button mat-button type="submit">Publish</button>
+
     </mat-toolbar-row>
   </mat-toolbar>
   <mat-dialog-content class="mat-typography">
@@ -12,14 +14,16 @@
       <div class="col-md-7 border">
         <div class="for-w border-bottom">
           <label>Title *</label>
-          <input type="text">
+          <input type="text" name="title" [(ngModel)]="service.form.title" #title="ngModel">
         </div>
+
         <div class="for-w border-bottom">
           <label>Description *</label>
-          <textarea name="" id="" cols="10" rows="3"></textarea>
+          <textarea name="" id="" cols="10" rows="3" name="description" [(ngModel)]="service.form.description"
+            #description="ngModel"></textarea>
         </div>
         <div class="row m-0 for-w">
-          
+
         </div>
       </div>
       <div class="col-md-5 border">
@@ -27,43 +31,27 @@
           <mat-list-item role="listitem">Series Code :
             <div class="dis2 search-div px-3">
               <mat-form-field class="search-form-field" floatLabel="never">
-              <input  matInput placeholder="Series Code">
+                <input matInput placeholder="Series Code" name="series_code" [(ngModel)]="service.form.series_code"
+                  #series_code="ngModel">
               </mat-form-field>
             </div>
           </mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item role="listitem">Created Date :
-            <div class="dis2 search-div px-3">
-              <mat-form-field class="search-form-field" floatLabel="never">
-                <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-            </div>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item role="listitem">Published Date :
-              <div class="dis2 search-div px-3">
-                  <mat-form-field class="search-form-field" floatLabel="never">
-                    <input matInput [matDatepicker]="picker1" placeholder="Choose a date">
-                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                    <mat-datepicker #picker1></mat-datepicker>
-                  </mat-form-field>
-                </div>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item role="listitem">Modified Date :
-              <div class="dis2 search-div px-3">
-                  <mat-form-field class="search-form-field" floatLabel="never">
-                    <input matInput [matDatepicker]="picker2" placeholder="Choose a date">
-                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2></mat-datepicker>
-                  </mat-form-field>
-                </div>
+          <mat-list-item>
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+              [(ngModel)]="service.form.status" #status="ngModel" name="status">
+              <mat-radio-button class="example-radio-button" value="published">
+                published
+              </mat-radio-button>
+              <mat-radio-button class="example-radio-button" value="in_draft">
+                in_draft
+              </mat-radio-button>
+            </mat-radio-group>
           </mat-list-item>
           <mat-divider></mat-divider>
         </mat-list>
-  
+
       </div>
     </div>
   </mat-dialog-content>
+</form>

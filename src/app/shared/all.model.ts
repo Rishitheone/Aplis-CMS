@@ -15,23 +15,6 @@ export interface RootObject {
     user: User;
 }
 
-// export interface Datum {
-//     id: number;
-//     parent_category_id?: any;
-//     name: string;
-//     type: string;
-//     description: string;
-//     tags: string;
-//     status: string;
-//     published_at: string;
-//     created_at: string;
-//     updated_at: string;
-// }
-
-// export interface CategoryObject {
-//     status: number;
-//     data: Datum[];
-// }
 
 export interface savCategoryObject {
     name: string;
@@ -40,25 +23,6 @@ export interface savCategoryObject {
     status: string;
     type: string;
 }
-
-
-// export interface category {
-//     parent_category_id:number;
-//     name: string;
-//     tags:string;
-//     description:string;
-//     status:string;
-//     type:string,
-//     children?: category[];
-//   }
-//   export interface category{
-//     name: string;
-//     tags:string;
-//     description:string;
-//     status:string;
-//     type:string;
-//     parent_category_id:number;
-//   }
 
 export interface TreeNode {
     data?: any;
@@ -70,3 +34,27 @@ export interface DropUser{
     value:string;
     viewValue:string;
 } 
+
+export interface saveSeries{
+    series_code:string;
+    title:string;
+    description:string;
+    status:string;
+} 
+
+export interface DatumSeries {
+    id: number;
+    title: string;
+    series_code: string;
+    description: string;
+    status: string;
+    published_at: string;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface allSeries {
+    status: number;
+    data: DatumSeries[];
+}
+

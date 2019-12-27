@@ -13,8 +13,7 @@ import { RootObject } from '../shared/all.model';
 export class LoginComponent implements OnInit {
   
 
-  loginUserData = {
-  }
+  loginUserData = {};
   constructor(private _auth:UserService,
     private _router:Router
     ) { }
